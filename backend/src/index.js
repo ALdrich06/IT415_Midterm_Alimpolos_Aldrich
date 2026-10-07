@@ -18,7 +18,22 @@ const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:3000").spli
 
 app.use(helmet());
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
-app.use(cors({ origin: allowedOrigins }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow same-machine tools with no Origin header (curl, server-to-server).
+      if (!origin) return callback(null, true);
+      // In production, only the configured origin(s) are allowed.
+      if (process.env.NODE_ENV === "production") {
+        return callback(null, allowedOrigins.includes(origin));
+      }
+      // In development, also allow localhost/127.0.0.1 on any port and the
+      // Devin browser-preview proxy, so local tunnels/previews can reach the API.
+      const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+      callback(null, allowedOrigins.includes(origin) || isLocal);
+    },
+  })
+);
 app.use(express.json());
 
 // Basic protection against rapid-fire duplicate payment submissions / abuse.
