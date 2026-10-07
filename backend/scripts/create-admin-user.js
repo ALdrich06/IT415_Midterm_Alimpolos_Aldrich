@@ -11,7 +11,7 @@
  *
  * Requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in backend/.env.
  */
-require("dotenv").config();
+require("dotenv").config({ override: true });
 const crypto = require("crypto");
 const { supabaseAdmin } = require("../src/config/supabaseClient");
 

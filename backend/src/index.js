@@ -1,4 +1,6 @@
-require("dotenv").config();
+// override: true ensures backend/.env always wins over stale/placeholder
+// values that may already exist as OS-level environment variables.
+require("dotenv").config({ override: true });
 
 const express = require("express");
 const cors = require("cors");

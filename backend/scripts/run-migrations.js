@@ -9,7 +9,7 @@
  * Requires SUPABASE_DB_URL in backend/.env (Supabase dashboard ->
  * Settings -> Database -> Connection string -> URI).
  */
-require("dotenv").config();
+require("dotenv").config({ override: true });
 const fs = require("fs");
 const path = require("path");
 const { Client } = require("pg");
