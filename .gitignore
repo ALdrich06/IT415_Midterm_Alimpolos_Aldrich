@@ -1,0 +1,17 @@
+# Root-level ignores (frontend/backend have their own .gitignore too)
+.DS_Store
+*.log
+
+# Never commit secrets
+.env
+.env.local
+.env.*.local
+!*.env.example
+
+# Editor/OS
+.vscode/
+.idea/
+Thumbs.db
+
+# Devin local-only config
+.devin/*.local.json
