@@ -1,6 +1,7 @@
 "use client";
 
 import { formatCurrency } from "@/lib/format";
+import { getProductImage } from "@/lib/productImages";
 
 export default function ProductCard({ product, onAdd }) {
   return (
@@ -11,9 +12,9 @@ export default function ProductCard({ product, onAdd }) {
     >
       <div className="relative h-32 w-full bg-cream-200 sm:h-40">
         <img
-          src={product.image_url || "https://placehold.co/400x300/f8ecd2/7f1f36?text=Product"}
+          src={getProductImage(product)}
           alt={product.name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           loading="lazy"
         />
       </div>
