@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ProductCard from "./ProductCard";
+import KioskBrand from "./KioskBrand";
 import CartPanel from "./CartPanel";
 import { formatCurrency } from "@/lib/format";
 import { getCartTotal, getCartItemCount } from "@/lib/cart";
@@ -34,10 +35,7 @@ export default function ProductCatalog({
   return (
     <div className="grid h-full grid-cols-1 gap-6 pb-24 md:grid-cols-[1fr_340px] md:pb-0">
       <section className="flex flex-col gap-4">
-        <div>
-          <h1 className="text-3xl font-extrabold text-maroon-900">Brew &amp; Bite Kiosk</h1>
-          <p className="text-maroon-700/80">Tap a product to add it to your order.</p>
-        </div>
+        <KioskBrand />
 
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (

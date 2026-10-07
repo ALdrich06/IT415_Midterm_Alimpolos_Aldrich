@@ -119,7 +119,7 @@ export default function KioskApp() {
   const total = getCartTotal(cart);
 
   return (
-    <div className="mx-auto h-screen max-w-7xl p-4 sm:p-6">
+    <div className="kiosk-shell mx-auto h-screen max-w-7xl p-4 sm:p-6">
       {stage === STAGES.CATALOG && (
         <ProductCatalog
           products={products}

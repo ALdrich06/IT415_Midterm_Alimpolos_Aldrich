@@ -13,6 +13,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Keep cafe artwork behind the kiosk only, with a quiet center for controls. */
+.kiosk-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.kiosk-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(253, 246, 233, 0.4), rgba(253, 246, 233, 0.4)), url("/kiosk/cafe-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -27,6 +47,10 @@ body {
 
 /* Printable receipt styles */
 @media print {
+  .kiosk-shell::before {
+    display: none;
+  }
+
   body * {
     visibility: hidden;
   }
